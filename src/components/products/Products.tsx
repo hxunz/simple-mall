@@ -1,0 +1,7 @@
+const Products = () => {
+  return (
+    <div>products list</div>
+  )
+}
+
+export default Products;
