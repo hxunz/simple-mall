@@ -1,0 +1,6 @@
+{
+  "extends": "next/core-web-vitals",
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": true
+}
