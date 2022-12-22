@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Box, Card, CardActionArea, CardContent, Pagination, Typography } from '@mui/material';
+import { Box, CardActionArea, CardContent, Pagination, Typography } from '@mui/material';
 import { useAppSelector } from 'hooks';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -29,7 +29,7 @@ const Products: FC<Props> = ({ page }) => {
           price
         }) => (
           <CardWrapper key={item_no}>
-            <Card>
+            <Box>
               <CardActionArea>
                 <Image
                   width={400}
@@ -46,7 +46,7 @@ const Products: FC<Props> = ({ page }) => {
                   </CardText>
                 </CardContent>
               </CardActionArea>
-            </Card>
+            </Box>
           </CardWrapper>
         ))}
       </Wrapper>
