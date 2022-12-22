@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { AddShoppingCart } from '@mui/icons-material';
 import { Box, CardActionArea, CardContent, Pagination, Typography } from '@mui/material';
 import { useAppSelector } from 'hooks';
 import Image from 'next/image';
@@ -45,6 +46,7 @@ const Products: FC<Props> = ({ page }) => {
                     {price}
                   </CardText>
                 </CardContent>
+                <AddShoppingCart />
               </CardActionArea>
             </Box>
           </CardWrapper>
