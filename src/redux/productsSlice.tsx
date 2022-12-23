@@ -20,10 +20,12 @@ export interface Product {
 
 export interface productsState {
   products: Product[][];
+  cartProducts: Product[];
 }
 
 export const initialState: productsState = {
-  products: []
+  products: [],
+  cartProducts: [],
 };
 
 const { actions, reducer } = createSlice({
@@ -33,13 +35,20 @@ const { actions, reducer } = createSlice({
     setProducts: (state, { payload: products }) => ({
       ...state,
       products
+    }),
+    addCart: (state, { payload: newCartProduct }) => ({
+      ...state,
+      cartProducts: [
+        ...state.cartProducts,
+        newCartProduct
+      ]
     })
   }
 })
 
-export const { setProducts } = actions;
+export const { setProducts, addCart } = actions;
 
-export function loadProducts() {
+export const loadProducts = () => {
   return async (dispatch: AppDispatch) => {
     try {
       const data = await getProducts();

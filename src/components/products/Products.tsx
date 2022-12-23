@@ -1,23 +1,40 @@
 import styled from '@emotion/styled';
-import { AddShoppingCart } from '@mui/icons-material';
-import { Box, CardActionArea, CardContent, Pagination, Typography } from '@mui/material';
-import { useAppSelector } from 'hooks';
+import { Box, Button, CardActionArea, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, Pagination, Typography } from '@mui/material';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import { addCart } from 'redux/productsSlice';
 
 type Props = {
   page: number;
 }
 
 const Products: FC<Props> = ({ page }) => {
+  const dispatch = useAppDispatch();
+
   const router = useRouter();
 
   const { products } = useAppSelector(store => store.products);
 
+  const [open, setOpen] = useState(false);
+
   const handleChangePage = (_: React.ChangeEvent<unknown>, page: number) => {
     router.push(`/products?page=${page}`)
   };
+
+  const handleClickOpen = (item_no: number) => {
+    setOpen(true);
+    dispatch(addCart(item_no));
+  }
+
+  const handleClose = () => {
+    setOpen(false);
+  }
+
+  const handleMoveCart = () => {
+    router.push('/cart');
+  }
 
   return (
     <>
@@ -46,7 +63,26 @@ const Products: FC<Props> = ({ page }) => {
                     {price}
                   </CardText>
                 </CardContent>
-                <AddShoppingCart />
+                <div>
+                  <Button
+                    onClick={() => handleClickOpen(item_no)}
+                  >
+                    장바구니
+                    <Dialog
+                      open={open}
+                      onClose={handleClose}
+                    >
+                      <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                          장바구니에 상품이 담겼습니다.
+                        </DialogContentText>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button onClick={handleMoveCart}>장바구니 바로가기</Button>
+                      </DialogActions>
+                    </Dialog>
+                  </Button>
+                </div>
               </CardActionArea>
             </Box>
           </CardWrapper>
