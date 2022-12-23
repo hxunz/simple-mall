@@ -26,7 +26,6 @@ const Products: FC<Props> = ({ page }) => {
   };
 
   const handleClickOpen = (item_no: number) => {
-    console.log('cartProducts::: ', cartProducts);
     const set = new Set(cartProducts);
     const unique = [...set]
     if (unique.length < 3) {
