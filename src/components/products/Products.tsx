@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import { Box, Button, CardActionArea, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, Pagination, Typography } from '@mui/material';
+import AlertDialog from 'components/dialog';
+import { AlertDialogProps } from 'components/dialog/AlertDialog';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -15,21 +17,39 @@ const Products: FC<Props> = ({ page }) => {
 
   const router = useRouter();
 
-  const { products } = useAppSelector(store => store.products);
+  const { products, cartProducts } = useAppSelector(store => store.products);
 
-  const [open, setOpen] = useState(false);
+  const [alertProps, setAlertProps] = useState<AlertDialogProps>({} as AlertDialogProps);
 
   const handleChangePage = (_: React.ChangeEvent<unknown>, page: number) => {
     router.push(`/products?page=${page}`)
   };
 
   const handleClickOpen = (item_no: number) => {
-    setOpen(true);
-    dispatch(addCart(item_no));
+    console.log('cartProducts::: ', cartProducts);
+    const set = new Set(cartProducts);
+    const unique = [...set]
+    if (unique.length < 3) {
+      dispatch(addCart(item_no));
+      setAlertProps({
+        message: '장바구니에 상품이 담겼습니다.',
+        open: true,
+        onClose: handleClose
+      })
+    } else {
+      setAlertProps({
+        message: '더 이상 장바구니에 추가할 수 없습니다.',
+        open: true,
+        onClose: handleClose
+      })
+    }
   }
 
   const handleClose = () => {
-    setOpen(false);
+    setAlertProps(prevAlertProps => ({
+      ...prevAlertProps,
+      open: false
+    }))
   }
 
   const handleMoveCart = () => {
@@ -68,19 +88,6 @@ const Products: FC<Props> = ({ page }) => {
                     onClick={() => handleClickOpen(item_no)}
                   >
                     장바구니
-                    <Dialog
-                      open={open}
-                      onClose={handleClose}
-                    >
-                      <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                          장바구니에 상품이 담겼습니다.
-                        </DialogContentText>
-                      </DialogContent>
-                      <DialogActions>
-                        <Button onClick={handleMoveCart}>장바구니 바로가기</Button>
-                      </DialogActions>
-                    </Dialog>
                   </Button>
                 </div>
               </CardActionArea>
@@ -92,6 +99,7 @@ const Products: FC<Props> = ({ page }) => {
         count={products.length}
         onChange={handleChangePage}
       />
+      <AlertDialog {...alertProps} />
     </>
   )
 }
