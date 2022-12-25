@@ -3,6 +3,7 @@ import { getPartition } from 'utils/partition';
 import { getProducts } from 'service/products';
 import { AppDispatch } from './store';
 import { getProductSort } from 'utils/sort';
+import { getCoupons } from 'service/coupons';
 
 export interface Pagination {
   totalPage: number,
@@ -19,14 +20,23 @@ export interface Product {
   availableCoupon?: boolean;
 }
 
+export interface Coupon {
+  type: string;
+  title: string;
+  discountRate?: number;
+  discountAmount?: number;
+}
+
 export interface productsState {
   products: Product[][];
   cartProducts: number[];
+  coupons: Coupon[];
 }
 
 export const initialState: productsState = {
   products: [],
   cartProducts: [],
+  coupons: [],
 };
 
 const { actions, reducer } = createSlice({
@@ -43,11 +53,15 @@ const { actions, reducer } = createSlice({
         ...state.cartProducts,
         newCartProduct
       ]
-    })
+    }),
+    setCoupons: (state, { payload: coupons }) => ({
+      ...state,
+      coupons
+    }),
   }
 })
 
-export const { setProducts, addCart } = actions;
+export const { setProducts, addCart, setCoupons } = actions;
 
 export const loadProducts = () => {
   return async (dispatch: AppDispatch) => {
@@ -59,6 +73,20 @@ export const loadProducts = () => {
         const partitionData = getPartition(sortData);
 
         dispatch(setProducts(partitionData));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
+export const loadCoupons = () => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const data = await getCoupons();
+
+      if (data) {
+        dispatch(setCoupons(data));
       }
     } catch (error) {
       console.error(error);
