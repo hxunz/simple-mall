@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import { useAppDispatch, useAppSelector } from 'hooks';
+import { useAppSelector } from 'hooks';
 import { productItems } from 'productItem';
 import { useState } from 'react';
-import { loadCoupons } from 'redux/productsSlice';
 import CartItem from './cartItem';
 
 const Cart = () => {
@@ -32,6 +31,20 @@ const Cart = () => {
           />
         ))}
       </Wrapper>
+      <p>쿠폰 적용</p>
+      <FormControl fullWidth>
+        <InputLabel>쿠폰</InputLabel>
+        <Select
+          value={coupons}
+          label="coupon"
+        >
+          {coupons.map(({
+            title
+          }) => (
+            <MenuItem key={title}>{title}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
       <p>총 결제 금액</p>
       <p>{totalPrice}</p>
     </>
@@ -43,7 +56,5 @@ const Wrapper = styled(Box)`
   flex-wrap: wrap;
   min-height: 30rem;
 `;
-
-
 
 export default Cart;
