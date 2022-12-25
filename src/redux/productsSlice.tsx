@@ -21,7 +21,7 @@ export interface Product {
 
 export interface productsState {
   products: Product[][];
-  cartProducts: Product[];
+  cartProducts: number[];
 }
 
 export const initialState: productsState = {
