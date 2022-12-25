@@ -1,4 +1,6 @@
-export const productItems = [
+import { Product } from 'redux/productsSlice';
+
+export const productItems: Product[] = [
   {
     item_no: 122997,
     item_name: "스탠리 클래식 런치박스",
