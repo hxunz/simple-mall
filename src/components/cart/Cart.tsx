@@ -1,13 +1,24 @@
 import styled from '@emotion/styled';
-import { Box, CardActionArea, CardContent, Typography, Checkbox } from '@mui/material';
+import { Box, CardActionArea, CardContent, Typography, Checkbox, ButtonGroup, Button } from '@mui/material';
 import { useAppSelector } from 'hooks';
 import Image from 'next/image';
 import { productItems } from 'productItem';
+import { useState } from 'react';
 
 const Cart = () => {
+  const [quantity, setQuantity] = useState(1);
+
   const { cartProducts } = useAppSelector(store => store.products);
 
   const cartList = productItems.filter(product => cartProducts.includes(product.item_no));
+
+  const handleClickIncreaseQuantity = () => {
+    setQuantity(quantity + 1)
+  };
+
+  const handleClickDecreaseQuantity = () => {
+    setQuantity(quantity - 1)
+  };
 
   return (
     <>
@@ -39,9 +50,15 @@ const Cart = () => {
                 </CardContent>
               </CardActionArea>
             </Box>
+            <ButtonGroup variant='outlined'>
+              <Button onClick={quantity === 1 ? undefined : handleClickDecreaseQuantity}>-</Button>
+              <Button>{quantity}</Button>
+              <Button onClick={handleClickIncreaseQuantity}>+</Button>
+            </ButtonGroup>
           </CardWrapper>
         ))}
       </Wrapper>
+      <p>총 결제 금액</p>
     </>
   )
 }
