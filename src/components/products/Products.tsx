@@ -51,10 +51,6 @@ const Products: FC<Props> = ({ page }) => {
     }))
   }
 
-  const handleMoveCart = () => {
-    router.push('/cart');
-  }
-
   return (
     <>
       <div>products list</div>
