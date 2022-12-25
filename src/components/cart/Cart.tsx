@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Box, CardActionArea, CardContent, Typography } from '@mui/material';
+import { Box, CardActionArea, CardContent, Typography, Checkbox } from '@mui/material';
 import { useAppSelector } from 'hooks';
 import Image from 'next/image';
 import { productItems } from 'productItem';
@@ -20,6 +20,7 @@ const Cart = () => {
           price
         }) => (
           <CardWrapper key={item_no}>
+            <Checkbox />
             <Box>
               <CardActionArea>
                 <Image
