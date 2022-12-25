@@ -1,4 +1,6 @@
-export const coupons = [
+import { Coupon } from 'redux/productsSlice';
+
+export const coupons: Coupon[] = [
   {
     type: 'rate',
     title: '10% 할인 쿠폰',
