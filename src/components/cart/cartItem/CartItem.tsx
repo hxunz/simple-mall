@@ -26,7 +26,7 @@ const CartItem: React.FC<Props> = ({ item_name, detail_image_url, price, setTota
     if (checked === false) {
       setTotalPrice(prev => prev + price * quantity)
     } else {
-      setTotalPrice(0)
+      setTotalPrice(prev => prev - price * quantity)
     }
   }
 
