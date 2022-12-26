@@ -29,7 +29,7 @@ const Products: FC<Props> = ({ page }) => {
     router.push(`/products?page=${page}`)
   };
 
-  const handleClickOpen = (item_no: number) => {
+  const handleClickAddCart = (item_no: number) => {
     const set = new Set(cartProducts);
     const unique = [...set]
     if (unique.length < 3) {
@@ -84,7 +84,7 @@ const Products: FC<Props> = ({ page }) => {
                 <CustomButton
                   variant='outlined'
                   startIcon={<AddShoppingCart />}
-                  onClick={() => handleClickOpen(item_no)}
+                  onClick={() => handleClickAddCart(item_no)}
                 >
                   장바구니에 담기
                 </CustomButton>
