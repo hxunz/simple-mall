@@ -6,6 +6,7 @@ import { AlertDialogProps } from 'components/dialog/AlertDialog';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { productItems } from 'productItem';
 import { FC, useState } from 'react';
 import { addCart } from 'redux/productsSlice';
 
@@ -21,6 +22,8 @@ const Products: FC<Props> = ({ page }) => {
   const { products, cartProducts } = useAppSelector(store => store.products);
 
   const [alertProps, setAlertProps] = useState<AlertDialogProps>({} as AlertDialogProps);
+
+  const cartListItemNum = productItems.filter(product => cartProducts.includes(product.item_no)).map((it) => it.item_no);
 
   const handleChangePage = (_: React.ChangeEvent<unknown>, page: number) => {
     router.push(`/products?page=${page}`)
