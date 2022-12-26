@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import { Box, Button, CardActionArea, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, Pagination, Typography } from '@mui/material';
+import { AddShoppingCart } from '@mui/icons-material';
+import { Box, Button, CardContent, Pagination, Typography } from '@mui/material';
 import AlertDialog from 'components/dialog';
 import { AlertDialogProps } from 'components/dialog/AlertDialog';
 import { useAppDispatch, useAppSelector } from 'hooks';
@@ -53,7 +54,6 @@ const Products: FC<Props> = ({ page }) => {
 
   return (
     <>
-      <div>products list</div>
       <Wrapper>
         {products[page - 1] && products[page - 1].map(({
           item_no,
@@ -62,42 +62,42 @@ const Products: FC<Props> = ({ page }) => {
           price
         }) => (
           <CardWrapper key={item_no}>
-            <Box>
-              <CardActionArea>
+            <Box sx={{ height: 600 }}>
+              <div>
                 <Image
                   width={400}
                   height={400}
                   src={detail_image_url}
                   alt={item_name}
                 />
-                <CardContent>
-                  <Typography>
-                    {item_name}
-                  </Typography>
+                <ContentWrapper>
                   <CardText>
-                    {price}
+                    {item_name}
                   </CardText>
-                </CardContent>
-                <div>
-                  <Button
-                    onClick={() => handleClickOpen(item_no)}
-                  >
-                    장바구니
-                  </Button>
-                </div>
-              </CardActionArea>
+                  <CardText>
+                    {price}원
+                  </CardText>
+                </ContentWrapper>
+                <CustomButton
+                  variant='outlined'
+                  startIcon={<AddShoppingCart />}
+                  onClick={() => handleClickOpen(item_no)}
+                >
+                  장바구니에 담기
+                </CustomButton>
+              </div>
             </Box>
           </CardWrapper>
         ))}
       </Wrapper>
-      <Pagination
+      <CustomPagination
         count={products.length}
         onChange={handleChangePage}
       />
       <AlertDialog {...alertProps} />
     </>
   )
-}
+};
 
 const Wrapper = styled(Box)`
   display: flex;
@@ -119,6 +119,22 @@ const CardText = styled(Typography)`
   -webkit-box-orient: vertical;
   font-size: 14;
   overflow: hidden;
+`;
+
+const ContentWrapper = styled(CardContent)`
+  width: 22rem;
+
+  & :not(:first-child){
+  margin-top: 1rem;
+  }
+`;
+
+const CustomPagination = styled(Pagination)`
+  margin: 2rem .5rem;
+`;
+
+const CustomButton = styled(Button)`
+  margin-left: .5rem
 `;
 
 export default Products;
