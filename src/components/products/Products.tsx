@@ -90,13 +90,23 @@ const Products: FC<Props> = ({ page }) => {
                     {price}원
                   </CardText>
                 </ContentWrapper>
-                <CustomButton
-                  variant='outlined'
-                  startIcon={<AddShoppingCart />}
-                  onClick={() => handleClickAddCart(item_no)}
-                >
-                  장바구니에 담기
-                </CustomButton>
+                {cartListItemNum.includes(item_no) ? (
+                  <CustomButton
+                    variant='outlined'
+                    startIcon={<AddShoppingCart />}
+                    onClick={() => handleClickRemoveCart(item_no)}
+                  >
+                    장바구니에서 빼기
+                  </CustomButton>
+                ) : (
+                  <CustomButton
+                    variant='outlined'
+                    startIcon={<AddShoppingCart />}
+                    onClick={() => handleClickAddCart(item_no)}
+                  >
+                    장바구니에 담기
+                  </CustomButton>
+                )}
               </div>
             </Box>
           </CardWrapper>
