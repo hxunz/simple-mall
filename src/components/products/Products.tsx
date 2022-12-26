@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { productItems } from 'productItem';
 import { FC, useState } from 'react';
-import { addCart } from 'redux/productsSlice';
+import { addCart, removeCart } from 'redux/productsSlice';
 
 type Props = {
   page: number;
@@ -46,6 +46,15 @@ const Products: FC<Props> = ({ page }) => {
         onClose: handleClose
       })
     }
+  }
+
+  const handleClickRemoveCart = (item_no: number) => {
+    dispatch(removeCart(item_no));
+    setAlertProps({
+      message: '장바구니에서 상품을 제거했습니다.',
+      open: true,
+      onClose: handleClose
+    })
   }
 
   const handleClose = () => {
