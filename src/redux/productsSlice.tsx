@@ -58,10 +58,16 @@ const { actions, reducer } = createSlice({
       ...state,
       coupons
     }),
+    removeCart: (state, action) => ({
+      ...state,
+      cartProducts: [
+        ...state.cartProducts.filter((it) => it !== action.payload)
+      ]
+    })
   }
 })
 
-export const { setProducts, addCart, setCoupons } = actions;
+export const { setProducts, addCart, setCoupons, removeCart } = actions;
 
 export const loadProducts = () => {
   return async (dispatch: AppDispatch) => {
