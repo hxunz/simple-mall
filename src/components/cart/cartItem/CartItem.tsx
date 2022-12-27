@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
+import { HighlightOff } from '@mui/icons-material';
 import { Checkbox, ButtonGroup, Button, TableRow, TableCell } from '@mui/material';
 import { useAppDispatch } from 'hooks';
 import Image from 'next/image';
 import { useState } from 'react';
-import { addPayList, updatePayList, removePayList } from 'redux/productsSlice';
+import { addPayList, updatePayList, removePayList, removeCart } from 'redux/productsSlice';
 
 type Props = {
   item_name: string;
@@ -22,6 +23,7 @@ const CartItem: React.FC<Props> = ({
   const dispatch = useAppDispatch();
 
   const [quantity, setQuantity] = useState(1);
+
   const [checked, setChecked] = useState(false);
 
   const handleChangeQuantity = (isPlus = false) => {
@@ -45,6 +47,10 @@ const CartItem: React.FC<Props> = ({
     else {
       dispatch(addPayList({ priceWithQuantity: price * quantity, availableCoupon, item_no }));
     }
+  }
+
+  const handleClickRemoveCartItem = () => {
+    dispatch(removeCart(item_no));
   }
 
   return (
@@ -77,6 +83,7 @@ const CartItem: React.FC<Props> = ({
             </p>
           </ProductName>
         )}
+        <HighlightOff onClick={handleClickRemoveCartItem} />
       </CustomTableCell>
 
       <TableCell align='center'>
