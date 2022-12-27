@@ -40,9 +40,16 @@ const Products: FC<Props> = ({ page }) => {
     }))
   }
 
+  const handleClickRouteCartPage = () => {
+    router.push('/cart')
+  }
+
   return (
     <>
-      <LocalMall style={{ float: 'right', margin: '.5rem 1rem 0 0' }} />
+      <LocalMall
+        style={{ float: 'right', margin: '.5rem 1rem 0 0' }}
+        onClick={handleClickRouteCartPage}
+      />
       {productsPerPage && <Wrapper>
         {productsPerPage.map(product => (
           <Product
