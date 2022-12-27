@@ -1,34 +1,49 @@
 import styled from '@emotion/styled';
 import { Checkbox, ButtonGroup, Button, TableRow, TableCell } from '@mui/material';
+import { useAppDispatch } from 'hooks';
 import Image from 'next/image';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
+import { addPayList, updatePayList, removePayList } from 'redux/productsSlice';
 
 type Props = {
   item_name: string;
   detail_image_url: string;
   price: number;
-  setTotalPrice: Dispatch<SetStateAction<number>>;
   availableCoupon: boolean | undefined;
+  item_no: number;
 }
 
-const CartItem: React.FC<Props> = ({ item_name, detail_image_url, price, setTotalPrice, availableCoupon }) => {
+const CartItem: React.FC<Props> = ({
+  item_name,
+  detail_image_url,
+  price,
+  availableCoupon,
+  item_no }) => {
+  const dispatch = useAppDispatch();
+
   const [quantity, setQuantity] = useState(1);
   const [checked, setChecked] = useState(false);
 
-  const handleClickIncreaseQuantity = () => {
-    setQuantity(quantity + 1)
-  };
+  const handleChangeQuantity = (isPlus = false) => {
+    const changedQuantity = isPlus ? quantity + 1 : quantity - 1;
+    setQuantity(changedQuantity);
 
-  const handleClickDecreaseQuantity = () => {
-    setQuantity(quantity - 1)
-  };
+    if (checked) {
+      dispatch(updatePayList({
+        priceWithQuantity: price * changedQuantity,
+        availableCoupon,
+        item_no
+      }))
+    }
+  }
 
-  const handleClickAddPay = () => {
+  const handleClickChecked = () => {
     setChecked(!checked)
-    if (checked === false) {
-      setTotalPrice(prev => prev + price * quantity)
-    } else {
-      setTotalPrice(prev => prev - price * quantity)
+    if (checked) {
+      dispatch(removePayList(item_no));
+    }
+    else {
+      dispatch(addPayList({ priceWithQuantity: price * quantity, availableCoupon, item_no }));
     }
   }
 
@@ -36,7 +51,7 @@ const CartItem: React.FC<Props> = ({ item_name, detail_image_url, price, setTota
     <TableRow>
       <TableCell align='center'>
         <div>
-          <Checkbox checked={checked} onClick={handleClickAddPay} />
+          <Checkbox checked={checked} onClick={handleClickChecked} />
         </div>
       </TableCell>
 
@@ -66,9 +81,9 @@ const CartItem: React.FC<Props> = ({ item_name, detail_image_url, price, setTota
 
       <TableCell align='center'>
         <ButtonGroup variant='outlined'>
-          <Button onClick={quantity === 1 ? undefined : handleClickDecreaseQuantity}>-</Button>
+          <Button onClick={() => handleChangeQuantity()} disabled={quantity === 1}>-</Button>
           <Button>{quantity}</Button>
-          <Button onClick={handleClickIncreaseQuantity}>+</Button>
+          <Button onClick={() => handleChangeQuantity(true)}>+</Button>
         </ButtonGroup>
       </TableCell>
 

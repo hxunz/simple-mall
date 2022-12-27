@@ -27,16 +27,24 @@ export interface Coupon {
   discountAmount?: number;
 }
 
+export interface Pay {
+  availableCoupon?: boolean;
+  priceWithQuantity: number;
+  item_no: number;
+}
+
 export interface productsState {
   products: Product[][];
   cartProducts: number[];
   coupons: Coupon[];
+  payList: Pay[];
 }
 
 export const initialState: productsState = {
   products: [],
   cartProducts: [],
   coupons: [],
+  payList: [],
 };
 
 const { actions, reducer } = createSlice({
@@ -63,11 +71,36 @@ const { actions, reducer } = createSlice({
       cartProducts: [
         ...state.cartProducts.filter((it) => it !== action.payload)
       ]
-    })
+    }),
+    addPayList: (state, { payload: newPay }: { payload: Pay }) => ({
+      ...state,
+      payList: [
+        ...state.payList,
+        newPay
+      ]
+    }),
+    updatePayList: (state, { payload: newPay }: { payload: Pay }) => ({
+      ...state,
+      payList: state.payList.map(pay => pay.item_no === newPay.item_no ? newPay : pay)
+    }),
+    removePayList: (state, { payload: itemNo }) => ({
+      ...state,
+      payList: [
+        ...state.payList.filter((pay) => pay.item_no !== itemNo)
+      ]
+    }),
   }
 })
 
-export const { setProducts, addCart, setCoupons, removeCart } = actions;
+export const {
+  setProducts,
+  addCart,
+  setCoupons,
+  removeCart,
+  addPayList,
+  updatePayList,
+  removePayList
+} = actions;
 
 export const loadProducts = () => {
   return async (dispatch: AppDispatch) => {
