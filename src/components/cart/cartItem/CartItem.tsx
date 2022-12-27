@@ -8,9 +8,10 @@ type Props = {
   detail_image_url: string;
   price: number;
   setTotalPrice: Dispatch<SetStateAction<number>>;
+  availableCoupon: boolean | undefined;
 }
 
-const CartItem: React.FC<Props> = ({ item_name, detail_image_url, price, setTotalPrice }) => {
+const CartItem: React.FC<Props> = ({ item_name, detail_image_url, price, setTotalPrice, availableCoupon }) => {
   const [quantity, setQuantity] = useState(1);
   const [checked, setChecked] = useState(false);
 
@@ -48,10 +49,21 @@ const CartItem: React.FC<Props> = ({ item_name, detail_image_url, price, setTota
             alt={item_name}
           />
         </div>
-        <ProductName>
-          {item_name}
-        </ProductName>
+
+        {availableCoupon === false ? (
+          <ProductName>
+            {item_name}
+          </ProductName>
+        ) : (
+          <ProductName>
+            {item_name}
+            <p style={{ color: '#ff4800', fontSize: '14px', lineHeight: '16px' }}>
+              쿠폰 사용 가능
+            </p>
+          </ProductName>
+        )}
       </CustomTableCell>
+
       <TableCell align='center'>
         <ButtonGroup variant='outlined'>
           <Button onClick={quantity === 1 ? undefined : handleClickDecreaseQuantity}>-</Button>
