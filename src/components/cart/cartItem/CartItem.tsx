@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import { Checkbox, ButtonGroup, Button, TableRow, TableCell } from '@mui/material';
 import Image from 'next/image';
 import { Dispatch, SetStateAction, useState } from 'react';
@@ -38,38 +39,62 @@ const CartItem: React.FC<Props> = ({ item_name, detail_image_url, price, setTota
         </div>
       </TableCell>
 
-      <TableCell align='center'>
+      <CustomTableCell align='center'>
         <div>
           <Image
-            width={400}
-            height={400}
+            width={200}
+            height={200}
             src={detail_image_url}
             alt={item_name}
           />
         </div>
-        <div>
+        <ProductName>
           {item_name}
-        </div>
+        </ProductName>
+      </CustomTableCell>
+      <TableCell align='center'>
+        <ButtonGroup variant='outlined'>
+          <Button onClick={quantity === 1 ? undefined : handleClickDecreaseQuantity}>-</Button>
+          <Button>{quantity}</Button>
+          <Button onClick={handleClickIncreaseQuantity}>+</Button>
+        </ButtonGroup>
       </TableCell>
 
       <TableCell align='center'>
         <div>
-          {price}
-        </div>
-      </TableCell>
-
-      <TableCell align='center'>
-        <div>
-          <ButtonGroup variant='outlined'>
-            <Button onClick={quantity === 1 ? undefined : handleClickDecreaseQuantity}>-</Button>
-            <Button>{quantity}</Button>
-            <Button onClick={handleClickIncreaseQuantity}>+</Button>
-          </ButtonGroup>
+          <Price>
+            {price}원
+          </Price>
         </div>
       </TableCell>
 
     </TableRow>
   )
 };
+
+const CustomTableCell = styled(TableCell)`
+  display: flex;
+  align-items: center;
+
+  & :not(:first-child){
+  margin-left: 2rem;
+  }
+`
+
+const ProductName = styled.div`
+  font-size: 16px;
+  font-weight: 550;
+`
+
+const Price = styled.div`
+  width: 150px;
+  font-size: 18px;
+  font-weight: 600;
+`
+
+const Buttons = styled(Button)`
+  font-size: 18px;
+  line-height: 24px;
+`
 
 export default CartItem;
