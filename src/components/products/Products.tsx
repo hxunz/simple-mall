@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { AddShoppingCart } from '@mui/icons-material';
+import { AddShoppingCart, LocalMall } from '@mui/icons-material';
 import { Box, Button, CardContent, Pagination, Typography } from '@mui/material';
 import AlertDialog from 'components/dialog';
 import { AlertDialogProps } from 'components/dialog/AlertDialog';
@@ -66,12 +66,14 @@ const Products: FC<Props> = ({ page }) => {
 
   return (
     <>
+      <LocalMall style={{ float: 'right', margin: '.5rem 1rem 0 0' }} />
       <Wrapper>
         {products[page - 1] && products[page - 1].map(({
           item_no,
           item_name,
           detail_image_url,
-          price
+          price,
+          availableCoupon
         }) => (
           <CardWrapper key={item_no}>
             <Box sx={{ height: 600 }}>
@@ -82,14 +84,28 @@ const Products: FC<Props> = ({ page }) => {
                   src={detail_image_url}
                   alt={item_name}
                 />
-                <ContentWrapper>
-                  <CardText>
-                    {item_name}
-                  </CardText>
-                  <CardText>
-                    {price}원
-                  </CardText>
-                </ContentWrapper>
+                {availableCoupon === false ? (
+                  <ContentWrapper>
+                    <CardText>
+                      {item_name}
+                    </CardText>
+                    <CardText>
+                      {price}원
+                    </CardText>
+                  </ContentWrapper>
+                ) : (
+                  <ContentWrapper>
+                    <CardText>
+                      {item_name}
+                    </CardText>
+                    <CardText>
+                      {price}원
+                    </CardText>
+                    <CardText style={{ color: '#ff4800', fontSize: '14px', lineHeight: '16px' }}>
+                      쿠폰 사용 가능
+                    </CardText>
+                  </ContentWrapper>
+                )}
                 {cartListItemNum.includes(item_no) ? (
                   <CustomButton
                     variant='outlined'
