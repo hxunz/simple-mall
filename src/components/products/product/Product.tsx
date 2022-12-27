@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { AddShoppingCart } from '@mui/icons-material';
-import { Box, Button, CardContent, Typography } from '@mui/material';
+import { Box, Button, CardContent, IconButton, Typography } from '@mui/material';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import Image from 'next/image';
 import { FC } from 'react';
@@ -45,13 +45,11 @@ const Product: FC<Props> = ({ detail_image_url, item_name, price, availableCoupo
               쿠폰 사용 가능
             </CardText>}
           </ContentWrapper>
-          <CustomButton
-            variant='outlined'
-            startIcon={<AddShoppingCart />}
+          <CustomIconButton
             onClick={handleClickAddCart}
           >
-            장바구니에 담기
-          </CustomButton>
+            <AddShoppingCart />
+          </CustomIconButton>
         </div>
       </Box>
     </CardWrapper>
@@ -82,7 +80,7 @@ const ContentWrapper = styled(CardContent)`
   }
 `;
 
-const CustomButton = styled(Button)`
+const CustomIconButton = styled(IconButton)`
   margin-left: .5rem
 `;
 
