@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { LocalMall } from '@mui/icons-material';
 import { Box, Pagination } from '@mui/material';
 import AlertDialog from 'components/dialog';
 import { AlertDialogProps } from 'components/dialog/AlertDialog';
@@ -40,16 +39,8 @@ const Products: FC<Props> = ({ page }) => {
     }))
   }
 
-  const handleClickRouteCartPage = () => {
-    router.push('/cart')
-  }
-
   return (
     <>
-      <LocalMall
-        style={{ float: 'right', margin: '.5rem 1rem 0 0' }}
-        onClick={handleClickRouteCartPage}
-      />
       {productsPerPage && <Wrapper>
         {productsPerPage.map(product => (
           <Product
