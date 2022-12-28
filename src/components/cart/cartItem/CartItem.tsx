@@ -126,9 +126,4 @@ const Price = styled.div`
   font-weight: 600;
 `
 
-const Buttons = styled(Button)`
-  font-size: 18px;
-  line-height: 24px;
-`
-
 export default CartItem;
