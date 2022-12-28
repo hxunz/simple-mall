@@ -60,8 +60,10 @@ const Products: FC<Props> = ({ page }) => {
 };
 
 const Wrapper = styled(Box)`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid: '. . .';
+  column-gap: 2rem;
+  justify-content: center;
   min-height: 30rem;
 `;
 

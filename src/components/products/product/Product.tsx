@@ -60,19 +60,12 @@ const Product: FC<Props> = ({ detail_image_url, item_name, price, availableCoupo
 }
 
 const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   padding: 1rem;
   margin-top: 2rem;
 `;
 
 const CardText = styled(Typography)`
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
   font-size: 14;
-  overflow: hidden;
 `;
 
 const ContentWrapper = styled(CardContent)`
@@ -84,7 +77,7 @@ const ContentWrapper = styled(CardContent)`
 `;
 
 const CustomIconButton = styled(IconButton)`
-  margin-left: .5rem
+  margin-left: .5rem;
 `;
 
 export default Product;
