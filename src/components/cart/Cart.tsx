@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
 import styled from '@emotion/styled';
-import { FormControl,
+import {
+  FormControl,
   InputLabel,
   MenuItem,
   Select,
@@ -11,7 +12,8 @@ import { FormControl,
   TableCell,
   TableContainer,
   TableHead,
-  TableRow } from '@mui/material';
+  TableRow
+} from '@mui/material';
 
 import { useAppSelector } from 'hooks';
 import { productItems } from 'productItem';
@@ -25,6 +27,8 @@ const Cart = () => {
 
   const cartList = productItems.filter(product => cartProducts.includes(product.item_no));
 
+  const selectCoupon = coupons.find(coupon => coupon.title === couponTitle);
+
   const totalPriceNoCoupon = payList.reduce((acc, cur) => {
     if (cur.availableCoupon === false) {
       return acc + cur.priceWithQuantity;
@@ -32,28 +36,26 @@ const Cart = () => {
     return acc;
   }, 0);
 
-  const totalPriceCoupon = payList.reduce((acc, cur) => {
+  const totalPriceWithCoupon = payList.reduce((acc, cur) => {
     if (cur.availableCoupon !== false) {
       return acc + cur.priceWithQuantity;
     }
     return acc;
   }, 0);
 
-  const useCoupon = coupons.find(coupon => coupon.title === couponTitle);
-
   const totalPrice = () => {
-    if (totalPriceCoupon !== 0) {
-      if (useCoupon?.discountAmount) {
-        if (totalPriceCoupon < useCoupon.discountAmount) {
+    if (totalPriceWithCoupon !== 0) {
+      if (selectCoupon?.discountAmount) {
+        if (totalPriceWithCoupon < selectCoupon.discountAmount) {
           return 0;
         }
-        return totalPriceCoupon - useCoupon.discountAmount;
+        return totalPriceWithCoupon - selectCoupon.discountAmount;
       }
-      if (useCoupon?.discountRate) {
-        return Math.floor(totalPriceCoupon - (totalPriceCoupon * useCoupon.discountRate / 100));
+      if (selectCoupon?.discountRate) {
+        return Math.floor(totalPriceWithCoupon - (totalPriceWithCoupon * selectCoupon.discountRate / 100));
       }
     }
-    return totalPriceCoupon;
+    return totalPriceWithCoupon;
   };
 
   const handleChangeCoupon = (e: SelectChangeEvent<string>) => {
