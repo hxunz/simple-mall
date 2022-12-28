@@ -1,11 +1,13 @@
 import styled from '@emotion/styled';
 import { LocalMall } from '@mui/icons-material';
-import { AppBar,
+import {
+  AppBar,
   Box,
   Button,
   Container,
   IconButton,
-  Toolbar } from '@mui/material';
+  Toolbar
+} from '@mui/material';
 import { useRouter } from 'next/router';
 
 import { useAppSelector } from 'hooks';
@@ -14,6 +16,10 @@ const Header = () => {
   const router = useRouter();
 
   const { cartProducts } = useAppSelector(store => store.products);
+
+  const handleClickRouteHome = () => {
+    router.push('/')
+  };
 
   const handleClickRouteProductsPage = () => {
     router.push('/products');
@@ -27,7 +33,10 @@ const Header = () => {
     <CustomAppBar position='sticky'>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
-          <CustomImg src='/images/logo.png' />
+          <CustomImg
+            src='/images/logo.png'
+            onClick={handleClickRouteHome}
+          />
 
           <CustomBox>
             <CustomButton onClick={handleClickRouteProductsPage}>
@@ -73,6 +82,7 @@ const CustomAppBar = styled(AppBar)`
 const CustomImg = styled.img`
   width: 56px;
   height: 56px;
+  cursor: pointer;
 `;
 
 const CustomBox = styled(Box)`
