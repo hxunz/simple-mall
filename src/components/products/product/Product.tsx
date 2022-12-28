@@ -2,12 +2,11 @@ import { FC } from 'react';
 
 import styled from '@emotion/styled';
 import { AddShoppingCart } from '@mui/icons-material';
-import { Box, Button, CardContent, IconButton, Typography } from '@mui/material';
-
-import Image from 'next/image';
+import { Box, CardContent, IconButton, Typography } from '@mui/material';
 
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { Product, addCart } from 'redux/productsSlice';
+import ProductImage from 'components/productImage/ProductImage';
 
 type Props = Product & {
   onOpenAlert: (message: string) => void;
@@ -34,7 +33,7 @@ const Product: FC<Props> = ({ detail_image_url, item_name, price, availableCoupo
     <CardWrapper>
       <Box sx={{ height: 600 }}>
         <div>
-          <Image
+          <ProductImage
             width={400}
             height={400}
             src={detail_image_url}
