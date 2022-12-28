@@ -92,7 +92,7 @@ const { actions, reducer } = createSlice({
         payList: [
           ...state.payList.filter((pay) => pay.item_no !== itemNo)
         ]
-      })
+      });
     },
     resetPayList: (state) => ({
       ...state,
