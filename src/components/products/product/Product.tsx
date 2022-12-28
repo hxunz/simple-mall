@@ -19,7 +19,10 @@ const Product: FC<Props> = ({ detail_image_url, item_name, price, availableCoupo
     if (!cartProducts.includes(item_no) && cartProducts.length < 3) {
       dispatch(addCart(item_no));
       onOpenAlert('장바구니에 상품이 담겼습니다.')
-    } else {
+    } else if (cartProducts.includes(item_no)) {
+      onOpenAlert('이미 추가된 상품입니다.')
+    }
+    else {
       onOpenAlert('더 이상 장바구니에 추가할 수 없습니다.')
     }
   }
