@@ -1,6 +1,29 @@
 {
   "extends": "next/core-web-vitals",
-  "tabWidth": 2,
-  "semi": true,
-  "singleQuote": true
+  "rules": {
+    "no-unexpected-multiline":"error",
+    "no-extra-semi":"error",
+    "no-irregular-whitespace":"error",
+    "no-multi-spaces":"error",
+    "no-multiple-empty-lines": ["error", {"max" : 1}],
+    "no-trailing-spaces":"error",
+    "object-curly-spacing": ["error", "always",
+    {
+      "arraysInObjects": false,
+      "objectsInObjects": true
+    }
+  ],
+    "object-curly-newline": ["error",
+    { "ImportDeclaration": "always", "ExportDeclaration": "never" }
+  ],
+    "no-var": "error",
+    "semi": "error",
+    "eol-last": "error",
+    "max-len": ["error", { "code": 80, "tabWidth": 2 }],
+    "no-useless-concat":"error",
+    "indent": ["error", 2],
+    "jsx-quotes": ["error", "prefer-single"],
+    "quotes":["error", "single"],
+    "sort-imports": "error"
+  }
 }
