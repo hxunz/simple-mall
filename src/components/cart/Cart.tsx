@@ -123,9 +123,6 @@ const Cart = () => {
         </PayText>
         <Pay>
           {totalPrice}원
-          {/* <PayCountItem>
-            총{cartList.length}개
-          </PayCountItem> */}
         </Pay>
       </PayWrapper>
     </>
@@ -170,12 +167,6 @@ const Pay = styled.p`
   font-size: 32px;
   font-weight: 600;
   vertical-align: -4px;
-`;
-
-const PayCountItem = styled.p`
-  margin-top: 10px;
-  font-size: 0.875rem;
-  font-weight: 500;
 `;
 
 export default Cart;
