@@ -74,6 +74,7 @@ const Cart = () => {
               <CustomTableCell>주문 금액</CustomTableCell>
             </TableRow>
           </CustomTableHead>
+
           <TableBody>
             {cartList.map(({
               item_no,
@@ -94,9 +95,13 @@ const Cart = () => {
           </TableBody>
         </CustomTable>
       </TableContainer>
+
       <p>쿠폰 적용</p>
       <FormControl fullWidth>
-        <InputLabel>쿠폰</InputLabel>
+        <InputLabel>
+          쿠폰
+        </InputLabel>
+
         <Select
           value={couponTitle}
           onChange={handleChangeCoupon}
@@ -111,6 +116,7 @@ const Cart = () => {
           ))}
         </Select>
       </FormControl>
+
       <p>총 결제 금액</p>
       <p>{totalPriceNoCoupon + totalPrice()}</p>
     </>

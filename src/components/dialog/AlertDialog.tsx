@@ -4,12 +4,14 @@ import { FC } from 'react';
 
 import styled from '@emotion/styled';
 import CloseIcon from '@mui/icons-material/Close';
-import { Button,
+import {
+  Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
-  IconButton } from '@mui/material';
+  IconButton
+} from '@mui/material';
 import { useRouter } from 'next/router';
 
 export type AlertDialogProps = {
@@ -39,11 +41,13 @@ const AlertDialog: FC<AlertDialogProps> = ({ open, onClose, message }) => {
       >
         <CloseIcon />
       </CustomIconButton>
+
       <DialogContent>
         <CustomDialogContentText>
           {message}
         </CustomDialogContentText>
       </DialogContent>
+
       <DialogActions>
         <CustomButton onClick={handleMoveCart}>
           장바구니 바로가기

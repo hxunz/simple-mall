@@ -40,6 +40,7 @@ const Product: FC<Props> = ({ detail_image_url, item_name, price, availableCoupo
             src={detail_image_url}
             alt={item_name}
           />
+
           <ContentWrapper>
             <CardText>
               {item_name}
@@ -53,6 +54,7 @@ const Product: FC<Props> = ({ detail_image_url, item_name, price, availableCoupo
               </CouponUsableText>
             }
           </ContentWrapper>
+
           <CustomIconButton
             onClick={handleClickAddCart}
           >

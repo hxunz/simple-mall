@@ -84,18 +84,15 @@ const CartItem: React.FC<Props> = ({ item_name,
           />
         </div>
 
-        {availableCoupon === false ? (
-          <ProductName>
-            {item_name}
-          </ProductName>
-        ) : (
-          <ProductName>
-            {item_name}
-            <p style={{ color: '#ff4800', fontSize: '14px', lineHeight: '16px' }}>
+        <ProductName>
+          {item_name}
+          {availableCoupon !== false &&
+            <CouponUsableText>
               쿠폰 사용 가능
-            </p>
-          </ProductName>
-        )}
+            </CouponUsableText>
+          }
+        </ProductName>
+
         <HighlightOff onClick={handleClickRemoveCartItem} />
       </CustomTableCell>
 
@@ -138,5 +135,11 @@ const Price = styled.div`
   font-size: 18px;
   font-weight: 600;
 `;
+
+const CouponUsableText = styled.p`
+  color: #ff4800;
+  font-size: 14px;
+  line-height: 16px;
+`
 
 export default CartItem;

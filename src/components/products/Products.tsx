@@ -54,10 +54,12 @@ const Products: FC<Props> = ({ page }) => {
           />
         ))}
       </Wrapper>}
+
       <CustomPagination
         count={products.length}
         onChange={handleChangePage}
       />
+
       <AlertDialog {...alertProps} />
     </>
   );
