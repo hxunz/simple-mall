@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styled from '@emotion/styled';
-import { FormControl,
+import {
+  FormControl,
   InputLabel,
   MenuItem,
   Select,
@@ -11,14 +12,18 @@ import { FormControl,
   TableCell,
   TableContainer,
   TableHead,
-  TableRow } from '@mui/material';
+  TableRow
+} from '@mui/material';
 
-import { useAppSelector } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import { productItems } from 'productItem';
 
 import CartItem from './cartItem';
+import { resetPayList } from 'redux/productsSlice';
 
 const Cart = () => {
+  const dispatch = useAppDispatch();
+
   const [couponTitle, setCouponTitle] = useState('');
 
   const { cartProducts, coupons, payList } = useAppSelector(store => store.products);
@@ -26,6 +31,10 @@ const Cart = () => {
   const cartList = productItems.filter(product => cartProducts.includes(product.item_no));
 
   const selectCoupon = coupons.find(coupon => coupon.title === couponTitle);
+
+  useEffect(() => {
+    dispatch(resetPayList());
+  }, [])
 
   const totalPriceNoCoupon = payList.reduce((acc, cur) => {
     if (cur.availableCoupon === false) {

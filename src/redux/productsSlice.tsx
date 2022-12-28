@@ -92,6 +92,10 @@ const { actions, reducer } = createSlice({
         ...state.payList.filter((pay) => pay.item_no !== itemNo)
       ]
     }),
+    resetPayList: (state) => ({
+      ...state,
+      payList: []
+    }),
   }
 });
 
@@ -102,7 +106,8 @@ export const {
   removeCart,
   addPayList,
   updatePayList,
-  removePayList
+  removePayList,
+  resetPayList
 } = actions;
 
 export const loadProducts = () => {
