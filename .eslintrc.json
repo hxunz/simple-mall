@@ -19,12 +19,11 @@
     "no-var": "error",
     "semi": "error",
     "eol-last": "error",
-    "max-len": ["error", { "code": 80, "tabWidth": 2 }],
+    "max-len": ["error", { "code": 120, "tabWidth": 2 }],
     "no-useless-concat":"error",
     "indent": ["error", 2],
     "jsx-quotes": ["error", "prefer-single"],
     "quotes":["error", "single"],
-    "sort-imports": "error",
     "import/no-unresolved": "error",
     "import/order": [
       "error",

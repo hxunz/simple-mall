@@ -1,3 +1,5 @@
+/* eslint max-len: 0 */
+
 import { Product } from 'redux/productsSlice';
 
 export const productItems: Product[] = [
