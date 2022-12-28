@@ -1,10 +1,14 @@
+import { FC, useState } from 'react';
+
 import styled from '@emotion/styled';
 import { Box, Pagination } from '@mui/material';
+
+import { useRouter } from 'next/router';
+
 import AlertDialog from 'components/dialog';
 import { AlertDialogProps } from 'components/dialog/AlertDialog';
 import { useAppSelector } from 'hooks';
-import { useRouter } from 'next/router';
-import { FC, useState } from 'react';
+
 import Product from './product';
 
 type Props = {
@@ -21,7 +25,7 @@ const Products: FC<Props> = ({ page }) => {
   const productsPerPage = products[page - 1];
 
   const handleChangePage = (_: React.ChangeEvent<unknown>, page: number) => {
-    router.push(`/products?page=${page}`)
+    router.push(`/products?page=${page}`);
   };
 
   const handleOpenAlert = (message: string) => {
@@ -29,15 +33,15 @@ const Products: FC<Props> = ({ page }) => {
       message: message,
       open: true,
       onClose: handleClose
-    })
-  }
+    });
+  };
 
   const handleClose = () => {
     setAlertProps(prevAlertProps => ({
       ...prevAlertProps,
       open: false
-    }))
-  }
+    }));
+  };
 
   return (
     <>
@@ -56,7 +60,7 @@ const Products: FC<Props> = ({ page }) => {
       />
       <AlertDialog {...alertProps} />
     </>
-  )
+  );
 };
 
 const Wrapper = styled(Box)`

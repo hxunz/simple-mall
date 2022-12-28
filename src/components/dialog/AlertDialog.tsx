@@ -1,14 +1,18 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import { useRouter } from 'next/router';
+
 import { FC } from 'react';
-import { IconButton } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+
 import styled from '@emotion/styled';
+import CloseIcon from '@mui/icons-material/Close';
+import {
+  IconButton,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText
+} from '@mui/material';
+import { useRouter } from 'next/router';
 
 export type AlertDialogProps = {
   open: boolean;
@@ -25,7 +29,7 @@ const AlertDialog: FC<AlertDialogProps> = ({ open, onClose, message }) => {
 
   const handleMoveCart = () => {
     router.push('/cart');
-  }
+  };
 
   return (
     <Dialog
@@ -49,19 +53,19 @@ const AlertDialog: FC<AlertDialogProps> = ({ open, onClose, message }) => {
       </DialogActions>
     </Dialog>
   );
-}
+};
 
 const CustomIconButton = styled(IconButton)`
   margin: .5rem 0 0 15rem;
   width: 60px;
   color: black;
-`
+`;
 const CustomDialogContentText = styled(DialogContentText)`
   font-size: 18px;
   color: black;
   line-height: 1.4em;
   text-align: center;
-`
+`;
 
 const CustomButton = styled(Button)`
   border: 1px solid rgb(212, 212, 212);
@@ -70,6 +74,6 @@ const CustomButton = styled(Button)`
   color: rgb(93, 93, 93);
   line-height: 30px;
   margin: 1px auto 15px;
-`
+`;
 
 export default AlertDialog;

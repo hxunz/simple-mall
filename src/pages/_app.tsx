@@ -1,7 +1,8 @@
-import Header from 'components/header';
 import type { AppProps } from 'next/app';
 
 import { Provider } from 'react-redux';
+
+import Header from 'components/header';
 
 import store from 'redux/store';
 
@@ -11,5 +12,5 @@ export default function App({ Component, pageProps }: AppProps) {
       <Header />
       <Component {...pageProps} />
     </Provider>
-  )
+  );
 }

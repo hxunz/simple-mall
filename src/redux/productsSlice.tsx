@@ -1,9 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getPartition } from 'utils/partition';
-import { getProducts } from 'service/products';
-import { AppDispatch } from './store';
-import { getProductSort } from 'utils/sort';
+
 import { getCoupons } from 'service/coupons';
+import { getProducts } from 'service/products';
+import { getPartition } from 'utils/partition';
+
+import { getProductSort } from 'utils/sort';
+
+import { AppDispatch } from './store';
 
 export interface Pagination {
   totalPage: number,
@@ -90,7 +93,7 @@ const { actions, reducer } = createSlice({
       ]
     }),
   }
-})
+});
 
 export const {
   setProducts,
@@ -116,8 +119,8 @@ export const loadProducts = () => {
     } catch (error) {
       console.error(error);
     }
-  }
-}
+  };
+};
 
 export const loadCoupons = () => {
   return async (dispatch: AppDispatch) => {
@@ -130,7 +133,7 @@ export const loadCoupons = () => {
     } catch (error) {
       console.error(error);
     }
-  }
-}
+  };
+};
 
 export default reducer;

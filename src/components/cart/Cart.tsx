@@ -1,8 +1,23 @@
+import { useState } from 'react';
+
 import styled from '@emotion/styled';
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow
+} from '@mui/material';
+
 import { useAppSelector } from 'hooks';
 import { productItems } from 'productItem';
-import { useState } from 'react';
+
 import CartItem from './cartItem';
 
 const Cart = () => {
@@ -14,14 +29,14 @@ const Cart = () => {
 
   const totalPriceNoCoupon = payList.reduce((acc, cur) => {
     if (cur.availableCoupon === false) {
-      return acc + cur.priceWithQuantity
+      return acc + cur.priceWithQuantity;
     }
     return acc;
   }, 0);
 
   const totalPriceCoupon = payList.reduce((acc, cur) => {
     if (cur.availableCoupon !== false) {
-      return acc + cur.priceWithQuantity
+      return acc + cur.priceWithQuantity;
     }
     return acc;
   }, 0);
@@ -32,7 +47,7 @@ const Cart = () => {
     if (totalPriceCoupon !== 0) {
       if (useCoupon?.discountAmount) {
         if (totalPriceCoupon < useCoupon.discountAmount) {
-          return 0
+          return 0;
         }
         return totalPriceCoupon - useCoupon.discountAmount;
       }
@@ -41,11 +56,11 @@ const Cart = () => {
       }
     }
     return totalPriceCoupon;
-  }
+  };
 
   const handleChangeCoupon = (e: SelectChangeEvent<string>) => {
-    setCouponTitle(e.target.value as string)
-  }
+    setCouponTitle(e.target.value as string);
+  };
 
   return (
     <>
@@ -99,16 +114,16 @@ const Cart = () => {
       <p>총 결제 금액</p>
       <p>{totalPriceNoCoupon + totalPrice()}</p>
     </>
-  )
-}
+  );
+};
 
 const CustomTable = styled(Table)`
   min-width: 650;
-`
+`;
 
 const CustomTableHead = styled(TableHead)`
   border-top: 2px solid;
-`
+`;
 
 const CustomTableCell = styled(TableCell)`
   height: 74px;
@@ -118,6 +133,6 @@ const CustomTableCell = styled(TableCell)`
   color: rgb(0, 0, 0);
   vertical-align: middle;
   text-align: center;
-`
+`;
 
 export default Cart;

@@ -1,10 +1,13 @@
+import { FC } from 'react';
+
 import styled from '@emotion/styled';
 import { AddShoppingCart } from '@mui/icons-material';
 import { Box, Button, CardContent, IconButton, Typography } from '@mui/material';
-import { useAppDispatch, useAppSelector } from 'hooks';
+
 import Image from 'next/image';
-import { FC } from 'react';
-import { addCart, Product } from 'redux/productsSlice';
+
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { Product, addCart } from 'redux/productsSlice';
 
 type Props = Product & {
   onOpenAlert: (message: string) => void;
@@ -18,14 +21,14 @@ const Product: FC<Props> = ({ detail_image_url, item_name, price, availableCoupo
   const handleClickAddCart = () => {
     if (!cartProducts.includes(item_no) && cartProducts.length < 3) {
       dispatch(addCart(item_no));
-      onOpenAlert('장바구니에 상품이 담겼습니다.')
+      onOpenAlert('장바구니에 상품이 담겼습니다.');
     } else if (cartProducts.includes(item_no)) {
-      onOpenAlert('이미 추가된 상품입니다.')
+      onOpenAlert('이미 추가된 상품입니다.');
     }
     else {
-      onOpenAlert('더 이상 장바구니에 추가할 수 없습니다.')
+      onOpenAlert('더 이상 장바구니에 추가할 수 없습니다.');
     }
-  }
+  };
 
   return (
     <CardWrapper>
@@ -56,8 +59,8 @@ const Product: FC<Props> = ({ detail_image_url, item_name, price, availableCoupo
         </div>
       </Box>
     </CardWrapper>
-  )
-}
+  );
+};
 
 const CardWrapper = styled.div`
   padding: 1rem;

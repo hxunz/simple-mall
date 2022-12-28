@@ -1,6 +1,7 @@
+import { useEffect } from 'react';
+
 import Cart from 'components/cart';
 import { useAppDispatch } from 'hooks';
-import { useEffect } from 'react';
 import { loadCoupons } from 'redux/productsSlice';
 
 const CartPage = () => {
@@ -13,7 +14,7 @@ const CartPage = () => {
 
   return (
     <Cart />
-  )
-}
+  );
+};
 
 export default CartPage;

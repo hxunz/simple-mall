@@ -1,10 +1,22 @@
+import { useState } from 'react';
+
 import styled from '@emotion/styled';
 import { HighlightOff } from '@mui/icons-material';
-import { Checkbox, ButtonGroup, Button, TableRow, TableCell } from '@mui/material';
-import { useAppDispatch } from 'hooks';
+import { Button,
+  ButtonGroup,
+  Checkbox,
+  TableCell,
+  TableRow
+} from '@mui/material';
+
 import Image from 'next/image';
-import { useState } from 'react';
-import { addPayList, updatePayList, removePayList, removeCart } from 'redux/productsSlice';
+
+import { useAppDispatch } from 'hooks';
+import { addPayList,
+  removeCart,
+  removePayList,
+  updatePayList
+} from 'redux/productsSlice';
 
 type Props = {
   item_name: string;
@@ -14,8 +26,7 @@ type Props = {
   item_no: number;
 }
 
-const CartItem: React.FC<Props> = ({
-  item_name,
+const CartItem: React.FC<Props> = ({ item_name,
   detail_image_url,
   price,
   availableCoupon,
@@ -35,23 +46,23 @@ const CartItem: React.FC<Props> = ({
         priceWithQuantity: price * changedQuantity,
         availableCoupon,
         item_no
-      }))
+      }));
     }
-  }
+  };
 
   const handleClickChecked = () => {
-    setChecked(!checked)
+    setChecked(!checked);
     if (checked) {
       dispatch(removePayList(item_no));
     }
     else {
       dispatch(addPayList({ priceWithQuantity: price * quantity, availableCoupon, item_no }));
     }
-  }
+  };
 
   const handleClickRemoveCartItem = () => {
     dispatch(removeCart(item_no));
-  }
+  };
 
   return (
     <TableRow>
@@ -103,7 +114,7 @@ const CartItem: React.FC<Props> = ({
       </TableCell>
 
     </TableRow>
-  )
+  );
 };
 
 const CustomTableCell = styled(TableCell)`
@@ -113,17 +124,17 @@ const CustomTableCell = styled(TableCell)`
   & :not(:first-child){
   margin-left: 2rem;
   }
-`
+`;
 
 const ProductName = styled.div`
   font-size: 16px;
   font-weight: 550;
-`
+`;
 
 const Price = styled.div`
   width: 150px;
   font-size: 18px;
   font-weight: 600;
-`
+`;
 
 export default CartItem;

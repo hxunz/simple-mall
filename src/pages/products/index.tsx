@@ -1,7 +1,10 @@
+import { useEffect } from 'react';
+
+import { useRouter } from 'next/router';
+
 import Products from 'components/products';
 import { useAppDispatch } from 'hooks';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+
 import { loadProducts } from 'redux/productsSlice';
 
 const ProductsPage = () => {
@@ -18,7 +21,7 @@ const ProductsPage = () => {
 
   return (
     <Products page={page} />
-  )
-}
+  );
+};
 
 export default ProductsPage;

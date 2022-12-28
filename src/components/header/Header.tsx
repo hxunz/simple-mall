@@ -1,7 +1,14 @@
-import { AppBar, Box, Toolbar, IconButton, Container, Button } from '@mui/material';
-import { LocalMall } from '@mui/icons-material';
-import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
+import { LocalMall } from '@mui/icons-material';
+import { AppBar,
+  Box,
+  Button,
+  Container,
+  IconButton,
+  Toolbar
+} from '@mui/material';
+import { useRouter } from 'next/router';
+
 import { useAppSelector } from 'hooks';
 
 const Header = () => {
@@ -10,16 +17,16 @@ const Header = () => {
   const { cartProducts } = useAppSelector(store => store.products);
 
   const handleClickRouteProductsPage = () => {
-    router.push('/products')
-  }
+    router.push('/products');
+  };
 
   const handleClickRouteCartPage = () => {
-    router.push('/cart')
-  }
+    router.push('/cart');
+  };
 
   return (
     <CustomAppBar position='sticky'>
-      <Container maxWidth="xl">
+      <Container maxWidth='xl'>
         <Toolbar disableGutters>
           <CustomImg src='/images/logo.png' />
           <CustomBox>
@@ -38,7 +45,7 @@ const Header = () => {
       </Container>
     </CustomAppBar>
   );
-}
+};
 
 const CustomSpan = styled.span`
   position: absolute;
@@ -53,23 +60,23 @@ const CustomSpan = styled.span`
   color: rgb(255, 255, 255);
   line-height: 18px;
   border-radius: 13px;
-`
+`;
 
 const CustomAppBar = styled(AppBar)`
   background-color: white;
   border-bottom: 1px solid;
   border-bottom-color: rgb(212, 212, 212);
   box-shadow: none;
-`
+`;
 
 const CustomImg = styled.img`
   width: 56px;
   height: 56px;
-`
+`;
 
 const CustomBox = styled(Box)`
   flex-grow: 1;
-`
+`;
 
 const CustomButton = styled(Button)`
   border-bottom: 4px solid transparent;
@@ -78,10 +85,10 @@ const CustomButton = styled(Button)`
   font-weight: 600;
   color: black;
   cursor: pointer;
-`
+`;
 
 const CustomLocalMall = styled(LocalMall)`
   color: black;
-`
+`;
 
 export default Header;
