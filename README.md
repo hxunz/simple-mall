@@ -6,6 +6,7 @@ Redux를 사용하여 상태 관리를 하였고 Emotion을 사용하여 css 스
 아래 커맨드를 입력하면 확인할 수 있습니다.
 ```
 npm install
+npm run build
 npm run start
 ```
 ## 추가 기능
