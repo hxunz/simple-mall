@@ -53,7 +53,7 @@ const Cart = () => {
         <Table sx={{ minWidth: 650 }} aria-label='simple-table'>
           <TableHead sx={{ borderTop: '2px solid' }}>
             <TableRow>
-              <CustomTableCell>체크</CustomTableCell>
+              <CustomTableCell />
               <CustomTableCell>상품 정보</CustomTableCell>
               <CustomTableCell>수량</CustomTableCell>
               <CustomTableCell>주문 금액</CustomTableCell>
