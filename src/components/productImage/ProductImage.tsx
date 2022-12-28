@@ -8,13 +8,13 @@ type Props = {
 }
 
 const ProductImage: React.FC<Props> = ({ src, alt, width, height }) => {
-  const removeSrcWidth = src.slice(0, -3);
+  const imageUrl = src.slice(0, -3);
 
   return (
     <Image
       width={width}
       height={height}
-      src={removeSrcWidth + width}
+      src={imageUrl + width}
       alt={alt}
     />
   )
