@@ -90,7 +90,7 @@ const CartItem: React.FC<Props> = ({ item_name,
             </CouponUsableText>
           }
         </ProductName>
-        <HighlightOff onClick={handleClickRemoveCartItem} />
+        <RemoveCartItem onClick={handleClickRemoveCartItem} />
       </CustomTableCell>
 
       <TableCell align='center'>
@@ -138,5 +138,9 @@ const CouponUsableText = styled.p`
   font-size: 14px;
   line-height: 16px;
 `;
+
+const RemoveCartItem = styled(HighlightOff)`
+  cursor: pointer;
+`
 
 export default CartItem;
