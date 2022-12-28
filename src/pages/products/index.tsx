@@ -17,7 +17,7 @@ const ProductsPage = () => {
   useEffect(() => {
     // fetch product list API
     dispatch(loadProducts());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Products page={page} />

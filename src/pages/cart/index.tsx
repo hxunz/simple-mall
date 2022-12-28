@@ -10,7 +10,7 @@ const CartPage = () => {
   useEffect(() => {
     // fetch coupon list API
     dispatch(loadCoupons());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Cart />
