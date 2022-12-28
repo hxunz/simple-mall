@@ -6,8 +6,7 @@ import { Button,
   ButtonGroup,
   Checkbox,
   TableCell,
-  TableRow
-} from '@mui/material';
+  TableRow } from '@mui/material';
 
 import Image from 'next/image';
 
@@ -15,8 +14,7 @@ import { useAppDispatch } from 'hooks';
 import { addPayList,
   removeCart,
   removePayList,
-  updatePayList
-} from 'redux/productsSlice';
+  updatePayList } from 'redux/productsSlice';
 
 type Props = {
   item_name: string;

@@ -5,8 +5,7 @@ import { AppBar,
   Button,
   Container,
   IconButton,
-  Toolbar
-} from '@mui/material';
+  Toolbar } from '@mui/material';
 import { useRouter } from 'next/router';
 
 import { useAppSelector } from 'hooks';

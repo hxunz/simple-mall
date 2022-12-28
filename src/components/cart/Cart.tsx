@@ -1,8 +1,7 @@
 import { useState } from 'react';
 
 import styled from '@emotion/styled';
-import {
-  FormControl,
+import { FormControl,
   InputLabel,
   MenuItem,
   Select,
@@ -12,8 +11,7 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow
-} from '@mui/material';
+  TableRow } from '@mui/material';
 
 import { useAppSelector } from 'hooks';
 import { productItems } from 'productItem';
