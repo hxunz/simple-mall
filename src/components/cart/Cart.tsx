@@ -1,8 +1,7 @@
 import { useState } from 'react';
 
 import styled from '@emotion/styled';
-import {
-  FormControl,
+import { FormControl,
   InputLabel,
   MenuItem,
   Select,
@@ -12,8 +11,7 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow
-} from '@mui/material';
+  TableRow } from '@mui/material';
 
 import { useAppSelector } from 'hooks';
 import { productItems } from 'productItem';
@@ -155,7 +153,7 @@ const CustomTableCell = styled(TableCell)`
 const PayWrapper = styled.div`
   border-bottom: 1px solid;
   margin: 7% auto;
-`
+`;
 
 const PayText = styled.p`
   border-top: 4px solid;
@@ -165,19 +163,19 @@ const PayText = styled.p`
   text-align: center;
   font-size: 18px;
   font-weight: 700;
-`
+`;
 
 const Pay = styled.p`
   text-align: center;
   font-size: 32px;
   font-weight: 600;
   vertical-align: -4px;
-`
+`;
 
 const PayCountItem = styled.p`
   margin-top: 10px;
   font-size: 0.875rem;
   font-weight: 500;
-`
+`;
 
 export default Cart;

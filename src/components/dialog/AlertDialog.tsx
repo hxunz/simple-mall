@@ -4,14 +4,12 @@ import { FC } from 'react';
 
 import styled from '@emotion/styled';
 import CloseIcon from '@mui/icons-material/Close';
-import {
-  Button,
+import { Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
-  IconButton
-} from '@mui/material';
+  IconButton } from '@mui/material';
 import { useRouter } from 'next/router';
 
 export type AlertDialogProps = {

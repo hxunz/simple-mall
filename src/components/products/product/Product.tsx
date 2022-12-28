@@ -4,9 +4,9 @@ import styled from '@emotion/styled';
 import { AddShoppingCart } from '@mui/icons-material';
 import { Box, CardContent, IconButton, Typography } from '@mui/material';
 
+import ProductImage from 'components/productImage/ProductImage';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { Product, addCart } from 'redux/productsSlice';
-import ProductImage from 'components/productImage/ProductImage';
 
 type Props = Product & {
   onOpenAlert: (message: string) => void;
@@ -78,7 +78,7 @@ const CouponUsableText = styled(CardText)`
   color: #ff4800;
   font-size: 14px;
   line-height: 16px;
-`
+`;
 
 const ContentWrapper = styled(CardContent)`
   width: 22rem;

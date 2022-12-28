@@ -1,13 +1,11 @@
 import styled from '@emotion/styled';
 import { LocalMall } from '@mui/icons-material';
-import {
-  AppBar,
+import { AppBar,
   Box,
   Button,
   Container,
   IconButton,
-  Toolbar
-} from '@mui/material';
+  Toolbar } from '@mui/material';
 import { useRouter } from 'next/router';
 
 import { useAppSelector } from 'hooks';

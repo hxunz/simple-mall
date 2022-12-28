@@ -2,23 +2,18 @@ import { useState } from 'react';
 
 import styled from '@emotion/styled';
 import { HighlightOff } from '@mui/icons-material';
-import {
-  Button,
+import { Button,
   ButtonGroup,
   Checkbox,
   TableCell,
-  TableRow
-} from '@mui/material';
-
-import { useAppDispatch } from 'hooks';
-import {
-  addPayList,
-  removeCart,
-  removePayList,
-  updatePayList
-} from 'redux/productsSlice';
+  TableRow } from '@mui/material';
 
 import ProductImage from 'components/productImage/ProductImage';
+import { useAppDispatch } from 'hooks';
+import { addPayList,
+  removeCart,
+  removePayList,
+  updatePayList } from 'redux/productsSlice';
 
 type Props = {
   item_name: string;
@@ -137,6 +132,6 @@ const CouponUsableText = styled.p`
   color: #ff4800;
   font-size: 14px;
   line-height: 16px;
-`
+`;
 
 export default CartItem;

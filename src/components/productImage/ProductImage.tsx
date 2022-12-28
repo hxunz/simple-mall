@@ -17,7 +17,7 @@ const ProductImage: React.FC<Props> = ({ src, alt, width, height }) => {
       src={imageUrl + width}
       alt={alt}
     />
-  )
-}
+  );
+};
 
 export default ProductImage;
