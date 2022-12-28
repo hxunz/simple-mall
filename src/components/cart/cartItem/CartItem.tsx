@@ -10,8 +10,6 @@ import {
   TableRow
 } from '@mui/material';
 
-import Image from 'next/image';
-
 import { useAppDispatch } from 'hooks';
 import {
   addPayList,
@@ -19,6 +17,8 @@ import {
   removePayList,
   updatePayList
 } from 'redux/productsSlice';
+
+import ProductImage from 'components/productImage/ProductImage';
 
 type Props = {
   item_name: string;
@@ -39,7 +39,7 @@ const CartItem: React.FC<Props> = ({ item_name,
 
   const [checked, setChecked] = useState(false);
 
-  const handleChangeQuantity = (isPlus = false) => {
+  const handleChangeQuantity = (isPlus = false) => () => {
     const changedQuantity = isPlus ? quantity + 1 : quantity - 1;
     setQuantity(changedQuantity);
 
@@ -75,14 +75,12 @@ const CartItem: React.FC<Props> = ({ item_name,
       </TableCell>
 
       <CustomTableCell align='center'>
-        <div>
-          <Image
-            width={200}
-            height={200}
-            src={detail_image_url}
-            alt={item_name}
-          />
-        </div>
+        <ProductImage
+          width={150}
+          height={150}
+          src={detail_image_url}
+          alt={item_name}
+        />
 
         <ProductName>
           {item_name}
@@ -92,15 +90,14 @@ const CartItem: React.FC<Props> = ({ item_name,
             </CouponUsableText>
           }
         </ProductName>
-
         <HighlightOff onClick={handleClickRemoveCartItem} />
       </CustomTableCell>
 
       <TableCell align='center'>
         <ButtonGroup variant='outlined'>
-          <Button onClick={() => handleChangeQuantity()} disabled={quantity === 1}>-</Button>
+          <Button onClick={handleChangeQuantity()} disabled={quantity === 1}>-</Button>
           <Button>{quantity}</Button>
-          <Button onClick={() => handleChangeQuantity(true)}>+</Button>
+          <Button onClick={handleChangeQuantity(true)}>+</Button>
         </ButtonGroup>
       </TableCell>
 
@@ -121,7 +118,7 @@ const CustomTableCell = styled(TableCell)`
   align-items: center;
 
   & :not(:first-child){
-  margin-left: 2rem;
+    margin-left: 2rem;
   }
 `;
 
