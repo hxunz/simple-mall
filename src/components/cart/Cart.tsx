@@ -43,7 +43,7 @@ const Cart = () => {
     return acc;
   }, 0);
 
-  const totalPrice = () => {
+  const totalPriceUseCoupon = () => {
     if (totalPriceWithCoupon !== 0) {
       if (selectCoupon?.discountAmount) {
         if (totalPriceWithCoupon < selectCoupon.discountAmount) {
@@ -57,6 +57,8 @@ const Cart = () => {
     }
     return totalPriceWithCoupon;
   };
+
+  const totalPrice = (totalPriceNoCoupon + totalPriceUseCoupon()).toLocaleString();
 
   const handleChangeCoupon = (e: SelectChangeEvent<string>) => {
     setCouponTitle(e.target.value as string);
@@ -117,8 +119,17 @@ const Cart = () => {
         </Select>
       </FormControl>
 
-      <p>총 결제 금액</p>
-      <p>{totalPriceNoCoupon + totalPrice()}</p>
+      <PayWrapper>
+        <PayText>
+          총 결제 금액
+        </PayText>
+        <Pay>
+          {totalPrice}원
+          {/* <PayCountItem>
+            총{cartList.length}개
+          </PayCountItem> */}
+        </Pay>
+      </PayWrapper>
     </>
   );
 };
@@ -140,5 +151,33 @@ const CustomTableCell = styled(TableCell)`
   vertical-align: middle;
   text-align: center;
 `;
+
+const PayWrapper = styled.div`
+  border-bottom: 1px solid;
+  margin: 7% auto;
+`
+
+const PayText = styled.p`
+  border-top: 4px solid;
+  border-bottom: 1px solid rgb(228, 228, 228);
+  width: 100%;
+  padding: 3% 0;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+`
+
+const Pay = styled.p`
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+  vertical-align: -4px;
+`
+
+const PayCountItem = styled.p`
+  margin-top: 10px;
+  font-size: 0.875rem;
+  font-weight: 500;
+`
 
 export default Cart;
