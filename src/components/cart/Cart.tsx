@@ -50,15 +50,15 @@ const Cart = () => {
   return (
     <>
       <TableContainer>
-        <Table sx={{ minWidth: 650 }} aria-label='simple-table'>
-          <TableHead sx={{ borderTop: '2px solid' }}>
+        <CustomTable>
+          <CustomTableHead>
             <TableRow>
               <CustomTableCell />
               <CustomTableCell>상품 정보</CustomTableCell>
               <CustomTableCell>수량</CustomTableCell>
               <CustomTableCell>주문 금액</CustomTableCell>
             </TableRow>
-          </TableHead>
+          </CustomTableHead>
           <TableBody>
             {cartList.map(({
               item_no,
@@ -77,7 +77,7 @@ const Cart = () => {
               />
             ))}
           </TableBody>
-        </Table>
+        </CustomTable>
       </TableContainer>
       <p>쿠폰 적용</p>
       <FormControl fullWidth>
@@ -101,6 +101,14 @@ const Cart = () => {
     </>
   )
 }
+
+const CustomTable = styled(Table)`
+  min-width: 650;
+`
+
+const CustomTableHead = styled(TableHead)`
+  border-top: 2px solid;
+`
 
 const CustomTableCell = styled(TableCell)`
   height: 74px;
