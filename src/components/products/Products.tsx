@@ -61,10 +61,8 @@ const Products: FC<Props> = ({ page }) => {
 
 const Wrapper = styled(Box)`
   display: grid;
-  grid: '. . .';
-  column-gap: 2rem;
-  justify-content: center;
-  min-height: 30rem;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-gap: 3rem;
 `;
 
 const CustomPagination = styled(Pagination)`
