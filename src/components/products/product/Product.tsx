@@ -47,9 +47,11 @@ const Product: FC<Props> = ({ detail_image_url, item_name, price, availableCoupo
             <CardText>
               {price}원
             </CardText>
-            {availableCoupon !== false && <CardText style={{ color: '#ff4800', fontSize: '14px', lineHeight: '16px' }}>
-              쿠폰 사용 가능
-            </CardText>}
+            {availableCoupon !== false &&
+              <CouponUsableText>
+                쿠폰 사용 가능
+              </CouponUsableText>
+            }
           </ContentWrapper>
           <CustomIconButton
             onClick={handleClickAddCart}
@@ -70,6 +72,12 @@ const CardWrapper = styled.div`
 const CardText = styled(Typography)`
   font-size: 14;
 `;
+
+const CouponUsableText = styled(CardText)`
+  color: #ff4800;
+  font-size: 14px;
+  line-height: 16px;
+`
 
 const ContentWrapper = styled(CardContent)`
   width: 22rem;
