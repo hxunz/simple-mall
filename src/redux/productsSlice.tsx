@@ -86,12 +86,14 @@ const { actions, reducer } = createSlice({
       ...state,
       payList: state.payList.map(pay => pay.item_no === newPay.item_no ? newPay : pay)
     }),
-    removePayList: (state, { payload: itemNo }) => ({
-      ...state,
-      payList: [
-        ...state.payList.filter((pay) => pay.item_no !== itemNo)
-      ]
-    }),
+    removePayList: (state, { payload: itemNo }) => {
+      return ({
+        ...state,
+        payList: [
+          ...state.payList.filter((pay) => pay.item_no !== itemNo)
+        ]
+      })
+    },
     resetPayList: (state) => ({
       ...state,
       payList: []
